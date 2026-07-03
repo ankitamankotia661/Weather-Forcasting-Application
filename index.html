@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast Application</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading" class="loading hidden">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Fetching weather data...</p>
+        </div>
+    </div>
+
+    <div class="container">
+    
+        <header class="header">
+            <div class="header-left">
+                <h1 class="app-title">
+                    <i class="fas fa-cloud-sun"></i> WeatherApp
+                </h1>
+                <button id="themeToggle" class="theme-toggle" type="button" title="Toggle dark/light theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search for a city..." class="search-input" autocomplete="off">
+                    <button id="searchBtn" class="search-btn" title="Search for weather">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <button id="locationBtn" class="location-btn" title="Use my location">
+                    <i class="fas fa-location-dot"></i>
+                </button>
+            </div>
+        </header>
+
+        <section class="current-weather">
+            <div class="weather-card main-card">
+                <div class="weather-header">
+                    <div class="location-info">
+                        <h2 id="cityName">Loading...</h2>
+                        <p id="dateTime">Fetching weather data...</p>
+                    </div>
+                    <div class="weather-condition">
+                        <span id="weatherDesc">--</span>
+                    </div>
+                </div>
+                
+                <div class="weather-main">
+                    <div class="temperature-section">
+                        <div class="temp-display">
+                            <span id="currentTemp" class="temp-value">--</span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <div class="temp-range">
+                            <span id="tempMax" class="temp-high">↑ --°</span>
+                            <span id="tempMin" class="temp-low">↓ --°</span>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-icon-display">
+                        <i id="weatherIcon" class="fas fa-cloud"></i>
+                    </div>
+                </div>
+                
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <i class="fas fa-wind"></i>
+                        <div>
+                            <span class="detail-label">Wind</span>
+                            <span id="windSpeed" class="detail-value">-- km/h</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-droplet"></i>
+                        <div>
+                            <span class="detail-label">Humidity</span>
+                            <span id="humidity" class="detail-value">--%</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-leaf"></i>
+                        <div>
+                            <span class="detail-label">Air Quality</span>
+                            <span id="airQuality" class="detail-value">--</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-umbrella"></i>
+                        <div>
+                            <span class="detail-label">Precipitation</span>
+                            <span id="precipitation" class="detail-value">--%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="forecast-section">
+            <div class="section-header">
+                <h3><i class="fas fa-calendar-week"></i> 7-Day Forecast</h3>
+                <span class="section-subtitle">Next 7 days</span>
+            </div>
+            <div class="forecast-container" id="forecastContainer">
+                <p style="color: var(--text-secondary); text-align: center; grid-column: 1/-1;">Loading forecast...</p>
+            </div>
+        </section>
+
+        <section class="charts-section">
+            <div class="chart-container">
+                <h4><i class="fas fa-chart-line"></i> Temperature Trend</h4>
+                <div class="chart-wrapper">
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h4><i class="fas fa-chart-bar"></i> Precipitation Forecast</h4>
+                <div class="chart-wrapper">
+                    <canvas id="precipitationChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="alerts-section" id="alertsSection">
+            <div class="section-header">
+                <h3><i class="fas fa-triangle-exclamation"></i> Weather Alerts</h3>
+                <span class="alert-count" id="alertCount">0 alerts</span>
+            </div>
+            <div id="alertsContainer" class="alerts-container">
+                // Alerts will be injected
+            </div>
+        </section>
+
+        <section class="other-cities">
+            <div class="section-header">
+                <h3><i class="fas fa-city"></i> Other Cities</h3>
+            </div>
+            <div class="cities-grid" id="citiesGrid">
+                <p style="color: var(--text-secondary); text-align: center; grid-column: 1/-1;">Loading cities...</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Data provided by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a></p>
+            <p>Last updated: <span id="lastUpdated">Just now</span></p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
