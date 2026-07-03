@@ -2,8 +2,6 @@
 
 A modern, responsive weather application built with vanilla JavaScript, HTML5, and CSS3 that provides real-time weather data, 7-day forecasts, and interactive visualizations.
 
-![Weather App Screenshot](screenshot.png)
-
 ## 🌤️ Live Demo
 
 [Add your deployed link here]
